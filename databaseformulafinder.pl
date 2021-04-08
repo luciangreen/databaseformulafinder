@@ -1,3 +1,5 @@
+dbff(Columns1,Result,Formula1) :-
+	dbff1(Columns1,Columns1,Result,Formula1).
 dbff1(Columns1,Columns2,Result,Formula1) :-
         member(Column,Columns1),
         Column=[Name|_Rest],

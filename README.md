@@ -1,30 +1,53 @@
-# databaseformulafinder
-Database Formula Finder
+# Database Formula Finder
 
-/**
+* Finds database formulas in terms of "and" and "or" from data.
 
-An object can be human-like algorithm
+# Prerequisites
 
-Database formula finder
+* Please download and install SWI-Prolog for your machine at `https://www.swi-prolog.org/build/`.
 
-A 123
-B 234
-C 345
+# 1. Install manually
 
-A^B^C=3
+Download <a href="http://github.com/luciangreen/databaseformulafinder/">this repository</a>.
 
-?- dbff1([[a,1,2,3]],[[a,1,2,3]],[1,2,3],F).
+# 2. Or Install from List Prolog Package Manager (LPPM)
+
+* Download the <a href="https://github.com/luciangreen/List-Prolog-Package-Manager">LPPM Repository</a>:
+
+```
+git clone https://github.com/luciangreen/List-Prolog-Package-Manager.git
+cd List-Prolog-Package-Manager
+swipl
+['lppm'].
+lppm_install("luciangreen","databaseformulafinder")
+halt
+```
+
+# Running
+
+* In Shell:
+`cd databaseformulafinder`
+`swipl`
+`['databaseformulafinder.pl'].`
+
+```
+dbff(Columns,Result,Formula).
+Columns - Column names and data
+Result - The result to work the formula out from
+Formula - The worked-out formula
+
+?- dbff([[a,1,2,3]],[1,2,3],F).
 F = [a] 
 
-?- dbff1([[a, 1], [b, 1, 2]],[[a, 1], [b, 1, 2]], [1],F).
+?- dbff([[a, 1], [b, 1, 2]], [1],F).
 F = [a, and, b] 
 F = [b, and, a] 
 
-?- dbff1([[a, 1], [b, 1, 2],[c,3]],[[a, 1], [b, 1, 2],[c,3] ], [1,2,3],F).
+?- dbff([[a, 1], [b, 1, 2],[c,3]], [1,2,3],F).
 F = [[b, or, a], or, c] 
 F = [b, or, [c, or, a]] 
 
-?- dbff1([[a, 1], [b, 1, 2],[c,1,3]],[[a, 1], [b, 1, 2],[c,1,3] ], [1],F).
+?- dbff([[a, 1], [b, 1, 2],[c,1,3]], [1],F).
 F = [[a, and, c], and, b] 
 F = [[a, or, c], and, b] 
 F = [a, and, [b, and, c]] 
@@ -50,8 +73,7 @@ F = [[c, or, a], and, b]
 F = [c, and, [b, and, a]] 
 F = [c, and, [b, or, a]] 
 
-?- dbff1([[a, 1], [b, 1, 2],[c,1,3]],[[a, 1], [b, 1, 2],[c,1,3] ], [1,3],F).
+?- dbff([[a, 1], [b, 1, 2],[c,1,3]], [1,3],F).
 F = [[a, and, b], or, c] 
 F = [c, or, [a, and, b]] 
-
-**/
+```
